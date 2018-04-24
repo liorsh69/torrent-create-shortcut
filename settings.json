@@ -1,0 +1,8 @@
+{
+	"torrentsFolder": "C:\\Path\\To\\Torrent\\Downloads",
+	"labels": {
+		"movies": "C:\\Path\\To\\Movies",
+		"series": "C:\\Path\\To\\Series",
+		"default": "C:\\Path\\To\\Downloads"
+	}
+}
