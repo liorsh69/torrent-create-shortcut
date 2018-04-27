@@ -10,7 +10,7 @@
 ::ZR41oxFsdFKZSDk=
 ::eBoioBt6dFKZSDk=
 ::cRo6pxp7LAbNWATEpCI=
-::egkzugNsPRvcWATEpCI=
+::egkzugNsPRvcWATEpSI=
 ::dAsiuh18IRvcCxnZtBJQ
 ::cRYluBh/LU+EWAnk
 ::YxY4rhs+aU+JeA==
@@ -32,4 +32,5 @@
 ::
 ::978f952a14a936cc963da21a135fa983
 REM run node file with all parameters
+cd /d %~dp0
 node index.js %*

@@ -33,7 +33,9 @@ settings.json <br>
     // Torrent client downloads folder
 	"torrentsFolder": "C:\\Torrents",
 
-    // key: label name
+	// key: label name - Always use lower case here.
+	// you can use any case in your torrent client.
+
     // value: full folder path
     // NOTE: escape \. use double \\.
 

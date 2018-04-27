@@ -32,29 +32,33 @@ const options = commandLineArgs(optionDefinitions, {
 	partial: true, // include unknown args
 })
 
+// check if path to scan exists
 if (!exists(options.scan)) {
 	console.error('Path not exists')
 	return
 }
 
 // destination path for shortcuts
-const destination = settings.labels[options.label] || settings.labels.default
+const destination =
+	settings.labels[options.label.toLowerCase()] || settings.labels.default
 
-// single file torrent - in downloads foldertest-single-file
-const singleFile =
+// single file torrent - in torrent downloads folder
+const isSingleFile =
 	path.dirname(options.scan) === path.dirname(settings.torrentsFolder)
 
 let files
 
-if (singleFile) {
+if (isSingleFile) {
 	// single file
 	files = Promise.resolve(path.join(options.scan, options.name))
 } else {
 	// in folder file/s
-	files = scanFolder(options.scan).then(filterVideos)
+	files = scanFolder(options.scan)
+		.then(filterVideos)
+		.catch(error => console.error('In folder files error', error))
 }
 
 files
 	.then(files => handleShortcuts(files, destination, options.name))
 	.then(console.log)
-	.catch(console.error)
+	.catch(error => console.error('files - handleShortcuts error', error))
