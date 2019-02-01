@@ -47,11 +47,15 @@ const isSingleFile =
 	path.dirname(options.scan) === path.dirname(settings.torrentsFolder)
 
 let files
+let folderName
 
 if (isSingleFile) {
 	// single file
 	files = Promise.resolve(path.join(options.scan, options.name))
 } else {
+	// get folder name
+	folderName = path.basename(options.scan)
+
 	// in folder file/s
 	files = scanFolder(options.scan)
 		.then(filterVideos)
@@ -59,6 +63,8 @@ if (isSingleFile) {
 }
 
 files
-	.then(files => handleShortcuts(files, destination, options.name))
+	.then(files =>
+		handleShortcuts(files, destination, folderName || options.name)
+	)
 	.then(console.log)
 	.catch(error => console.error('files - handleShortcuts error', error))
