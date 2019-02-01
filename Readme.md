@@ -1,19 +1,23 @@
 #torrent-create-shortcut
 Node.js script for any torrent client to execute when a download is finished. <br>
 Creating a shortcut lnk for video files to a folder by labels. <br>
+
 <br>
 The script will create a new folder for any torrent files with multiple video files, like whole seasons, ignoring samples files. <br>
 
 ## Instalation
 
 1.  Download and install [Node.js](https://nodejs.org/en/)
-2.  [Fork](TODO:)/[Download](TODO:)/[Git clone](https://help.github.com/articles/duplicating-a-repository/) this repository.
-3.  npm install dependencies
+2.  [Fork](TODO:)/[Download](https://github.com/liorsh69/torrent-create-shortcut/archive/master.zip)/[Git clone](https://help.github.com/articles/duplicating-a-repository/) this repository
+3.  Run install.bat (just doing "npm install" to install dependencies)
+4.  Edit settings.json (see "Folders & Labels" below)
+5.  Edit Torrent client Settings
 
 ## Torrent client Settings:
 
 Go to settings -> Run Program <br>
 Copy and change paths to start.bat <br>
+
 <br>
 start.exe is the same as start.bat <br>
 its only to run node hidden so it wont pop up a new console window <br>

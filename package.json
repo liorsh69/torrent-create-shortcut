@@ -4,8 +4,7 @@
 		"name": "Lior Shitrit"
 	},
 	"version": "0.0.1",
-	"description":
-		"Node.js script for any torrent client to execute when a download is finished. Creating a shortcut lnk for video files to a folder by labels",
+	"description": "Node.js script for any torrent client to execute when a download is finished. Creating a shortcut lnk for video files to a folder by labels",
 	"main": "index.js",
 	"license": "ISC",
 	"dependencies": {
