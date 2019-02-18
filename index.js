@@ -1,6 +1,10 @@
+const winston = require('winston')
 const commandLineArgs = require('command-line-args')
 const path = require('path')
 const fs = require('fs')
+
+// log to file
+const logger = initLogger()
 
 const {
 	scanFolder,
@@ -32,9 +36,13 @@ const options = commandLineArgs(optionDefinitions, {
 	partial: true, // include unknown args
 })
 
+logger.info(`--- Start ---`)
+logger.info(`options:`)
+logger.info(JSON.stringify(options))
+
 // check if path to scan exists
 if (!exists(options.scan)) {
-	console.error('Path not exists')
+	logger.error(`Path not exists: ${options.scan}`)
 	return
 }
 
@@ -59,12 +67,36 @@ if (isSingleFile) {
 	// in folder file/s
 	files = scanFolder(options.scan)
 		.then(filterVideos)
-		.catch(error => console.error('In folder files error', error))
+		.catch(error => logger.error(`In folder files error: ${error}`))
 }
 
 files
 	.then(files =>
 		handleShortcuts(files, destination, folderName || options.name)
 	)
-	.then(console.log)
-	.catch(error => console.error('files - handleShortcuts error', error))
+	.then(result => {
+		logger.info(result)
+		logger.info(`-- Done --`)
+	})
+	.catch(error => logger.error(`files - handleShortcuts error: ${error}`))
+
+// log to file
+function initLogger() {
+	const jsonTimestampFormat = winston.format.printf(
+		({ level, message, timestamp }) => {
+			return `${timestamp} [${level}]: ${message}`
+		}
+	)
+	return winston.createLogger({
+		format: winston.format.combine(
+			winston.format.timestamp({ format: 'DD-MM-YYYY HH:mm:ss' }),
+			jsonTimestampFormat
+		),
+		transports: [
+			new winston.transports.Console(),
+			new winston.transports.File({
+				filename: 'console.log',
+			}),
+		],
+	})
+}

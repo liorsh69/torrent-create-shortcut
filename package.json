@@ -9,6 +9,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"command-line-args": "^5.0.2",
-		"windows-shortcuts": "^0.1.6"
+		"windows-shortcuts": "^0.1.6",
+		"winston": "^3.2.1"
 	}
 }
